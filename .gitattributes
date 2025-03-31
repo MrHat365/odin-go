@@ -1,0 +1,11 @@
+*.index.html linguist-detectable=false
+*.js linguist-detectable=false
+*.json linguist-detectable=false
+*go.sum linguist-language=go
+*go.mod linguist-language=go
+*.md linguist-language=markdown
+*.txt linguist-language=text
+*.yml linguist-language=yaml
+*.yaml linguist-language=yaml
+*.toml linguist-language=toml
+*.lock linguist-language=lockfile
