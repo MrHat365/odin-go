@@ -1,4 +1,4 @@
-package client
+package odin_api
 
 import (
 	"bytes"
@@ -95,7 +95,7 @@ func (c *Client) Post(endpoint string, data interface{}) ([]byte, error) {
 		return nil, fmt.Errorf("读取响应失败: %w", err)
 	}
 
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode != http.StatusOK && resp.StatusCode != http.StatusCreated {
 		return nil, fmt.Errorf("请求失败，状态码: %d, 错误: %s", resp.StatusCode, string(body))
 	}
 
