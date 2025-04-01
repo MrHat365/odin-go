@@ -8,7 +8,7 @@ type OdinUser struct {
 	Bio                interface{} `json:"bio"`
 	Image              interface{} `json:"image"`
 	Referrer           interface{} `json:"referrer"`
-	Admin              int         `json:"admin"`
+	Admin              bool        `json:"admin"`
 	RefCode            string      `json:"ref_code"`
 	Profit             interface{} `json:"profit"`
 	TotalAssetValue    interface{} `json:"total_asset_value"`

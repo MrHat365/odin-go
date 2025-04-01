@@ -28,7 +28,8 @@ type Identity interface {
 // 身份验证相关功能
 
 // AuthIdentity 身份验证和身份注册请求
-func (c *Client) AuthIdentity(identity Identity) (string, error) {
+func AuthIdentity(identity Identity) (string, error) {
+	c := NewClient()
 	// 获取当前时间戳
 	now := time.Now().UnixMilli()
 	timestamp := fmt.Sprintf("%d", now)
@@ -50,7 +51,7 @@ func (c *Client) AuthIdentity(identity Identity) (string, error) {
 	// 发送请求
 	resp, err := c.Post("/auth", authReq)
 	if err != nil {
-		return "", fmt.Errorf("身份验证请求失败: %w", err)
+		return "", fmt.Errorf("%w", err)
 	}
 	// 解析响应
 	var authToken struct {
@@ -91,12 +92,12 @@ func (c *Client) ChangeUsername(username, principalID, authToken string) (*OdinU
 // GetOdinFunUser 获取Odin.fun用户信息
 func (c *Client) GetOdinFunUser(principalID string) (*OdinUser, error) {
 	// 发送请求
-	endpoint := fmt.Sprintf("/odinUser/%s", principalID)
+	endpoint := fmt.Sprintf("/user/%s", principalID)
 	resp, err := c.Get(endpoint)
 	if err != nil {
 		return nil, fmt.Errorf("获取用户信息失败: %w", err)
 	}
-
+	fmt.Println(string(resp))
 	// 解析响应
 	var odinUser *OdinUser
 

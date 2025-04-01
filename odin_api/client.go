@@ -68,12 +68,10 @@ func (c *Client) Get(endpoint string) ([]byte, error) {
 // Post 发送POST请求，带有JSON数据
 func (c *Client) Post(endpoint string, data interface{}) ([]byte, error) {
 	url := fmt.Sprintf("%s%s", BaseURL, endpoint)
-
 	jsonData, err := json.Marshal(data)
 	if err != nil {
 		return nil, fmt.Errorf("JSON编码失败: %w", err)
 	}
-
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return nil, fmt.Errorf("创建请求失败: %w", err)

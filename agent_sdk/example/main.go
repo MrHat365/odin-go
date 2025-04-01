@@ -6,10 +6,9 @@ import (
 	"crypto/rand"
 	"encoding/hex"
 	"fmt"
-	"log"
-
 	"github.com/aviate-labs/agent-go/identity"
 	"github.com/aviate-labs/agent-go/principal"
+	"log"
 )
 
 // generateKeys 生成新的Ed25519密钥对
@@ -50,7 +49,7 @@ func createPrincipalFromPublicKey(publicKey []byte) (string, error) {
 }
 
 func main() {
-	// 示例1: 创建新的密钥对
+	//示例1: 创建新的密钥对
 	fmt.Println("===== 示例1: 创建新的密钥对 =====")
 	pubKey, privKey, err := generateKeys()
 	if err != nil {
@@ -76,8 +75,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("创建身份失败: %v", err)
 	}
-	fmt.Println(id)
-
+	fmt.Printf("ID: %v", id)
 	// 直接从公钥获取Principal ID
 	principalID, err := createPrincipalFromPublicKey(loadedPubKey)
 	if err != nil {
@@ -85,19 +83,23 @@ func main() {
 	}
 	fmt.Printf("Principal ID: %s\n", principalID)
 
+	//publicKey := "aaa1f48107ca3ca3ce8d51744db433b04cc053360a612b1dc1a78899a6b04ab8"
+	//privateKey := "f6269885ad2a97713464852cd6a24bffd7102339b01d28227ae8f639b1416a01aaa1f48107ca3ca3ce8d51744db433b04cc053360a612b1dc1a78899a6b04ab8"
+	//principalId := "kusod-3ucpd-ljbqj-teq2e-oyfha-ojq3b-bee7o-47djc-t66m2-262dp-zae"
 	// 示例4: 使用身份创建Agent并连接到AgentSdk合约
 	//fmt.Println("\n===== 示例4: 使用身份创建Agent并连接到AgentSdk合约 =====")
 	//config := agent.Config{
-	//	Identity: id, // 使用刚创建的身份
+	//	Identity: principalId, // 使用刚创建的身份
 	//}
 
 	//ag, err := agent.New(config)
 	//if err != nil {
 	//	log.Fatalf("创建Agent失败: %v", err)
 	//}
+	//fmt.Println(ag)
 	//
 	//// 创建AgentSdk客户端，使用默认的Canister ID
-	//client, err := AgentSdk.New(ag, "")
+	//client, err := agent_sdk.New(ag, "")
 	//if err != nil {
 	//	log.Fatalf("创建AgentSdk客户端失败: %v", err)
 	//}
